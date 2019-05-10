@@ -1,0 +1,21 @@
+spring:       
+    http:
+        encoding.charset: UTF-8
+        encoding.enable: true
+        encoding.force: true
+   
+    datasource:
+        validation-query: SELECT 1
+        test-on-borrow: true
+        
+    pagehelper:
+        helperDialect: Mysql
+        reasonable: true
+        supportMethodsArguments: true
+        pageSizeZero: true
+        params: count=countSql
+#        
+#    mvc:
+#        view:
+#            prefix: /WEB-INF/jsp/
+#            suffix: .jsp    

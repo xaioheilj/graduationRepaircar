@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.graduationdesign.lj.springboot.mapper.UploadImgMapper" >
+  <resultMap id="BaseResultMap" type="com.graduationdesign.lj.springboot.pojo.UploadImg" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="file_name" property="file_name" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="upload_user" property="upload_user" jdbcType="INTEGER" />
+    <result column="role_id" property="role_id" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, file_name, location, upload_user,role_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_imgUpload
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <!-- <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_graduation_file
+    where id = #{id,jdbcType=BIGINT}
+  </delete> -->
+  <insert id="insert" parameterType="com.graduationdesign.lj.springboot.pojo.UploadImg" >
+    insert into t_imgUpload (id, file_name, location, 
+      upload_user,role_id)
+    values (#{id,jdbcType=INTEGER}, #{file_name,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{upload_user,jdbcType=INTEGER},#{role_id,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.graduationdesign.lj.springboot.pojo.UploadImg" >
+    insert into t_imgUpload
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="file_name != null" >
+        file_name,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="upload_user != null" >
+        upload_user,
+      </if>
+      <if test="role_id != null" >
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="file_name != null" >
+        #{file_name,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="upload_user != null" >
+        #{upload_user,jdbcType=INTEGER},
+      </if>
+      <if test="role_id != null" >
+        #{role_id,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+<!--   <update id="updateByPrimaryKeySelective" parameterType="com.rainbowchen.graduation.entity.TGraduationFile" >
+    update t_graduation_file
+    <set >
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadUser != null" >
+        upload_user = #{uploadUser,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rainbowchen.graduation.entity.TGraduationFile" >
+    update t_graduation_file
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      upload_user = #{uploadUser,jdbcType=BIGINT},
+      role_id = #{roleId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update> -->
+  <select id="selectAllFile" resultMap="BaseResultMap">
+    select t_imgUpload.*
+    from t_imgUpload
+    where
+    id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>
